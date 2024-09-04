@@ -2,7 +2,13 @@ from pprint import pprint
 from pony.orm import *
 
 from ims.db import Item
-from ims.utils import clear_screen, generate_menu, validate, print_as_table, validate_field
+from ims.utils import (
+    clear_screen,
+    generate_menu,
+    validate,
+    print_as_table,
+    validate_field,
+)
 
 
 import inquirer
@@ -90,7 +96,9 @@ class ItemDTO:
         id = inquirer.prompt(
             [
                 inquirer.Text(
-                    "id", message="Enter the id of the item", validate=validate_field(Item, "id")
+                    "id",
+                    message="Enter the id of the item",
+                    validate=validate_field(Item, "id"),
                 )
             ]
         )
@@ -173,9 +181,14 @@ class ItemDTO:
         id = inquirer.prompt(
             [
                 inquirer.Text(
-                    "id", message="Enter the id of the item", validate=validate_field(Item, "id")
+                    "id",
+                    message="Enter the id of the item",
+                    validate=validate_field(Item, "id"),
                 ),
-                inquirer.Confirm("confirm", message=lambda x: f"Are you sure you want to delete item id {x["id"]}?"),
+                inquirer.Confirm(
+                    "confirm",
+                    message=lambda x: f"Are you sure you want to delete item id {x['id']}?",
+                ),
             ]
         )
         if id is None:

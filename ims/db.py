@@ -24,15 +24,16 @@ from pony.orm import *
 db = Database()
 
 db.bind(
-		provider="sqlite",
-		filename="../ims.db",
-		create_db=True,
+    provider="sqlite",
+    filename="../ims.db",
+    create_db=True,
 )
 
+
 class User(db.Entity):
-		username = Required(str)
-		hash = Required(str)
-		role = Required(str)
+    username = Required(str)
+    hash = Required(str)
+    role = Required(str)
 
 
 # class Box(db.Entity):
@@ -57,23 +58,28 @@ class User(db.Entity):
 
 
 class Item(db.Entity):
-		name = Required(str)
-		category = Required(str)
-		price = Required(float)
-		supplier = Required(str)
-		serial = Required(str)
-		quantity = Required(int)
-		warranty = Required(str)
-		orders = Set("OrderItem")
+    name = Required(str)
+    category = Required(str)
+    price = Required(float)
+    supplier = Required(str)
+    serial = Required(str)
+    quantity = Required(int)
+    warranty = Required(str)
+    orders = Set("OrderItem")
+
 
 class Order(db.Entity):
     status = Required(str)
-    created_at = Required(datetime.datetime, default=datetime.datetime.now(datetime.UTC))
+    created_at = Required(
+        datetime.datetime, default=datetime.datetime.now(datetime.UTC)
+    )
     items = Set("OrderItem")
 
+
 class OrderItem(db.Entity):
-		order = Required(Order)
-		item = Required(Item)
-		quantity = Required(int)
+    order = Required(Order)
+    item = Required(Item)
+    quantity = Required(int)
+
 
 db.generate_mapping(create_tables=True)
