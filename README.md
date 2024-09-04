@@ -11,7 +11,7 @@ IMS is a project designed to manage inventory systems efficiently.
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/FlameDoesVC/ims.git
+   git clone https://github.com/FlameDoesVC/pop-ims.git
    ```
 2. Navigate to the project directory:
    ```sh
